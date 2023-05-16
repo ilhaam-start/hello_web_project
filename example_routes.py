@@ -52,3 +52,4 @@ def apply_example_routes(app):
         repository = BookRepository(connection)
         repository.delete(id)
         return "Book deleted successfully"
+

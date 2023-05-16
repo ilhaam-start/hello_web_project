@@ -5,7 +5,17 @@ from flask import Flask, request
 app = Flask(__name__)
 
 # == Your Routes Here ==
+@app.route('/submit', methods=['POST'])
+def post_hello():
+    name = request.form['name']
+    message = request.form['message']
 
+    return f'Thanks {name}, you sent this message: "{message}" '
+
+@app.route('/submit', methods=['GET'])
+def get_name():
+    name = request.args['name']
+    return f"I am waving at {name}"
 # == Example Code Below ==
 
 # GET /emoji
