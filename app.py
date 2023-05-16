@@ -11,11 +11,14 @@ def post_hello():
     message = request.form['message']
 
     return f'Thanks {name}, you sent this message: "{message}" '
+#run (curl -X POST -d "name=Leo&message=Hello world" http://127.0.0.1:5000/submit)
 
 @app.route('/submit', methods=['GET'])
 def get_name():
     name = request.args['name']
     return f"I am waving at {name}"
+#run(curl "http://127.0.0.1:5000/submit?name=Leo")
+
 # == Example Code Below ==
 
 # GET /emoji
