@@ -19,6 +19,28 @@ def get_name():
     return f"I am waving at {name}"
 #run(curl "http://127.0.0.1:5000/submit?name=Leo")
 
+@app.route('/count_vowels', methods=['POST'])
+def post_vowel_count():
+    text = request.form['text']
+    vowels = "aeiou"
+    count = sum(1 for i in text if i in vowels)
+    return f'There are {count} vowels in "{text}"'
+#run (curl -X POST -d "text=eee" http://127.0.0.1:5000/count_vowels)
+
+@app.route('/sort-names', methods=['POST'])
+def post_sort_names():
+    if 'names' not in request.form:
+        return 'Please provide some names', 400
+    names = request.form['names'].split(',')
+    return ','.join(sorted(names))
+
+@app.route('/names', methods=['GET'])
+def get_names():
+    predefined_names = ["Julia", "Alice", "Karim"]
+    add_name = request.args['add_name'].split(',')
+    result = ', '.join(predefined_names + add_name)
+    return result
+
 # == Example Code Below ==
 
 # GET /emoji
